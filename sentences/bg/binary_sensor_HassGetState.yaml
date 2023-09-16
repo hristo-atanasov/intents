@@ -444,3 +444,146 @@ intents:
         slots:
           domain: binary_sensor
           device_class: moisture
+
+      # Motion
+      - sentences:
+          - "[сензор(а|ът|ите)] [<name>] {bs_motion_states:state} ли [е|са] [<area>]"
+          - "{bs_motion_states:state} ли [е|са] [сензор(а|ът|ите)] [<name>] [<area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: motion
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      - sentences:
+          - "{bs_motion_states:state} ли [е|са] движени(е|я) [<area>]"
+          - "движение {bs_motion_states:state} ли [е|са|се] [<area>]"
+          - "има ли движение [<area>]"
+          - "има ли движение {bs_motion_states:state} [<area>]"
+          - "има ли {bs_motion_states:state} движение [<area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: motion
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      - sentences:
+          - "{bs_motion_states:state} ли [е|са|се] [няко(й|и|е)] (нещ(о|а|то)|сензор[и|а|ът|ите]|устройств(о|a|то|ата)|датчи(к|ци|а|ът|ците))[ за движение] [<area>]"
+          - "няко(й|и|е) (нещ(о|а)|сензор[и]|устройств(о|a)|датчи(к|ци))[ за движение] {bs_motion_states:state} ли [е|са] [<area>]"
+          - "няко(й|и|е) (нещ(о|а)|сензор[и]|устройств(о|a)|датчи(к|ци)) {bs_motion_states:state} ли движение [<area>]"
+          - "{bs_motion_states:state} ли [е|са|се] движение няко(й|и|е) (нещ(о|а)|сензор[и]|устройств(о|a)|датчи(к|ци)) [<area>]"
+          - "{bs_motion_states:state} ли [е|са|се] движение [<area>]"
+          - "има ли [няко(й|и|е) ](нещ(о|а)|сензор[и]|устройств(о|a)|датчи(к|ци))[ за движение] [ко(и|й|е)то [(е|са)]] {bs_motion_states:state} [<area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      - sentences:
+          - "има ли [някак(ъв|ви|во)] движени(е|я) [засечен[и|о]|регистриран[и|о]|отчетен[и|о]] [<area>]"
+          - "има ли [някак(ъв|ви|во)] [засечен[и|о]|регистриран[и|о]|отчетен[и|о]] движени(е|я) [<area>]"
+          - "(засечен[и|о]|регистриран[и|о]|отчетен[и|о]) ли (е|са) [някак(ъв|ви|во)] движени(е|я) [<area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: motion
+          state: "on"
+
+      - sentences:
+          - "всички[те] (сензори|устройствa|датчици) за движение ли [са] {bs_motion_states:state} [<area>]"
+          - "{bs_motion_states:state} ли [са] всички[те] (сензори|устройствa|датчици) за движение [<area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      - sentences:
+          - "ко(й|и|е) [е|са] (сензор[и|а|ът|ите]|датчи(к|ка|кът|ци|те)|устройств(о|а|ата|ото)) за движение [ко(йто|ито|ето)] [е|са] {bs_motion_states:state} [<area>]"
+          - "ко(й|и|е) [е|са] {bs_motion_states:state} (сензор[и]|датчи(к|ци)|устройств(о|a)) за движение [<area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      - sentences:
+          - "колко [е|са] (сензор(и|а|ите)|датчи(ка|ци|те)|устройствa[та]) за движение [които] [е|са] {bs_motion_states:state} [<area>]"
+          - "колко [е|са] {bs_motion_states:state} (сензор(и|а)|датчи(ка|ци)|устройствa) за движение [<area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      # Occupancy
+      - sentences:
+          - "[сензор(а|ът|ите)] <name> {bs_occupancy_states:state} ли [е|са] [<area>]"
+          - "{bs_occupancy_states:state} ли [е|са] [сензор(а|ът|ите)] <name> [<area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: occupancy
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
+
+      - sentences:
+          - "{bs_occupancy_states:state} ли [е|се] присъствие [<area>]"
+          - "присъствие {bs_occupancy_states:state} ли [е|се] [<area>]"
+          - "има ли присъствие [<area>]"
+          - "има ли присъствие {bs_occupancy_states:state} [<area>]"
+          - "има ли {bs_occupancy_states:state} присъствие [<area>]"
+        response: one_yesno
+        requires_context:
+          domain: binary_sensor
+          device_class: motion
+        slots:
+          domain: binary_sensor
+          device_class: motion
+
+      - sentences:
+          - "има ли [някакво] присъствие {bs_occupancy_states:state} [<area>]"
+          - "има ли [някакво] {bs_occupancy_states:state} присъствие [<area>]"
+          - "{bs_occupancy_states:state} ли (е|се) [някакво] присъствие [<area>]"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
+
+      - sentences:
+          - "има ли [някакво] присъствие засечено [<area>]"
+          - "има ли [някакво] засечено присъствие [<area>]"
+          - "засича ли се [някакво] присъствие [<area>]"
+          - "окупиран[a|о|и] ли (е|са) <area>"
+          - "обитаван[a|о|и] ли (е|са) <area>"
+        response: any
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
+          state: "on"
+
+      - sentences:
+          - "всички[те] (сензори|устройствa|датчици) за присъствие ли [са] {bs_occupancy_states:state} [<area>]"
+          - "{bs_occupancy_states:state} ли [са] всички[те] (сензори|устройствa|датчици) за присъствие [<area>]"
+        response: all
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
+
+      - sentences:
+          - "ко(й|и|е) [е|са] (сензор[и|а|ът|ите]|датчи(к|ка|кът|ци|те)|устройств(о|а|ата|ото)) за присъствие [ко(йто|ито|ето)] [е|са] {bs_occupancy_states:state} [<area>]"
+          - "ко(й|и|е) [е|са] {bs_occupancy_states:state} (сензор[и]|датчи(к|ци)|устройств(о|a)) за присъствие [<area>]"
+        response: which
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
+
+      - sentences:
+          - "колко [е|са] (сензор(и|а|ите)|датчи(ка|ци|те)|устройствa[та]) за присъствие [които] [е|са] {bs_occupancy_states:state} [<area>]"
+          - "колко [е|са] {bs_occupancy_states:state} (сензор(и|а)|датчи(ка|ци)|устройствa) за присъствие [<area>]"
+        response: how_many
+        slots:
+          domain: binary_sensor
+          device_class: occupancy
