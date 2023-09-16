@@ -275,7 +275,7 @@ entities:
     attributes:
       device_class: moisture
 
-  - name: "Движение"
+  - name: "Гараж Движение"
     id: "binary_sensor.garage_motion"
     area: "garage"
     state:
